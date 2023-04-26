@@ -1901,7 +1901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d959c20f3941304b9b96b700ae89010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSource: 20
   clips: []
 --- !u!4 &1559312692
 Transform:
@@ -1984,6 +1983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: XR Device Simulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
