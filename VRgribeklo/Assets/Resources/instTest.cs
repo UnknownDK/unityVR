@@ -13,7 +13,7 @@ public class instTest : MonoBehaviour
     public static int numSource = 0;
     public static GameObject[] sphereTest;
     public AudioClip[] clips;
-    float delayTime = 3.5f;
+    float delayTime = 1.5f;
     float nextTime = 0f;
 
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class instTest : MonoBehaviour
         clips = new AudioClip[numSource];
         for(int i = 0; i< numSource; i++)
         {
-            clips[i] = (AudioClip)Resources.Load("dabbror");
+            clips[i] = (AudioClip)Resources.Load("impuls");
         }
         
         // instantiate sound sources, change position and attatch sound clip
