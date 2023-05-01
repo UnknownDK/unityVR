@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 45466703}
   - component: {fileID: 45466702}
   - component: {fileID: 45466701}
+  - component: {fileID: 45466704}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -189,6 +190,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &45466704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45466700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4cc963448e71b4db9451a5eceb4d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &438113604
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +431,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438113604}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7c58c1bf1c1738449dfcd16251c92b6, type: 3}
   m_Name: 
