@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Clean : MonoBehaviour
+public class Clean
 {
     double[,] imageSovsRen;
     int sovsIndex;

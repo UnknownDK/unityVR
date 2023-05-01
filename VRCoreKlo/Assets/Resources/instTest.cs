@@ -70,7 +70,7 @@ public class instTest : MonoBehaviour
         }
     }
 
-    public static void WriteString(string s)
+    public void WriteString(string s)
     {
         string path = Application.persistentDataPath + "/buffer.txt";
         //Write some text to the test.txt file

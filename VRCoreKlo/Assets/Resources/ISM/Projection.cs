@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projection : MonoBehaviour
+public class Projection
 {
     private double[] dotNormVect;
     private double[] dotNormNorm;

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 
-public class reflectiveSurfaces : MonoBehaviour 
+public class reflectiveSurfaces
 {
     public static double[,] firstImageSources;
     public static double[,] secondImageSources;
@@ -14,7 +14,7 @@ public class reflectiveSurfaces : MonoBehaviour
     public static string[] ISMWallReflects;
 
     public static void Main() {
-        double[] point = new double[] {2,2,1};
+        double[] point = new double[] {1,2,1};
 
         room.Room room = new room.Room();
         double[,,] wallVertices = room.GetWalls();

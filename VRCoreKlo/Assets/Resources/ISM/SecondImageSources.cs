@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SecondImageSources : MonoBehaviour
+public class SecondImageSources
 {
     private double[,] imageSources;
     private int noOfCoords;
@@ -134,6 +134,6 @@ public class SecondImageSources : MonoBehaviour
     }
     public double arbitraryFunction(double funken, int iteratorJ)
     {
-        return (funken*(iteratorJ+1)*181 + funken*(iteratorJ+2)*389 + funken*(iteratorJ+3)*137); // primtal
+        return Math.Round(funken*(iteratorJ+1)*181 + funken*(iteratorJ+2)*389 + funken*(iteratorJ+3)*137,3); // primtal
     }
 }
