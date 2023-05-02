@@ -26,7 +26,7 @@ public class SecondImageSources
         checkSumSovs = new double[noOfOldSovser*noOfProjs]; 
         for (int j = 0; j < noOfCoords; j++) // lægger OG kilde ind
         {
-            checkSumSovs[0] += arbitraryFunction(point[j], j);
+            checkSumSovs[0] += Math.Round(arbitraryFunction(point[j], j),3);
         }
         checkSum.Add(checkSumSovs[0]);
 
@@ -35,7 +35,7 @@ public class SecondImageSources
         {
             for (int j = 0; j < noOfCoords; j++)
             {
-                checkSumSovs[o] += arbitraryFunction(firstImages[o, j], j);
+                checkSumSovs[o] += Math.Round(arbitraryFunction(firstImages[o, j], j),3);
             }
             //Console.WriteLine("GAMLE CHECKSUMS: {0}", checkSumSovs[o]);
             checkSum.Add(checkSumSovs[o]);
@@ -83,8 +83,8 @@ public class SecondImageSources
             {
                 for (int j = 0; j < noOfCoords; j++)
                 {
-                    imageDummy[y, j] = firstImages[o, j] - 2 * projection[q, j];
-                    checkSumSovs[y] += arbitraryFunction(imageDummy[y, j], j);
+                    imageDummy[y, j] = Math.Round(firstImages[o, j] - 2 * projection[q, j],3);
+                    checkSumSovs[y] += Math.Round(arbitraryFunction(imageDummy[y, j], j),3);
                 }
                 if (!imageContainedCheck(checkSumSovs[y], checkSum))
                 {
@@ -92,7 +92,7 @@ public class SecondImageSources
                     //Console.WriteLine("Sovser tilføjet: {0}", sovserAdded);
                     for(int j = 0; j < noOfCoords; j++)
                     {
-                        imageSources[y, j] = Math.Round(imageDummy[y, j],3);
+                        imageSources[y, j] = imageDummy[y, j];
                     }
                     checkSum.Add(checkSumSovs[y]);
                     wallsReflectedOn[y] = o.ToString() + " -> " + q.ToString();
@@ -134,6 +134,21 @@ public class SecondImageSources
     }
     public double arbitraryFunction(double funken, int iteratorJ)
     {
-        return Math.Round(funken*(iteratorJ+1)*181 + funken*(iteratorJ+2)*389 + funken*(iteratorJ+3)*137,3); // primtal
+        if(iteratorJ == 0)
+        {
+            return (funken*(double)181); // primtal
+        }
+        else if(iteratorJ == 1)
+        {
+            return (funken*(double)389);
+        }
+        else if(iteratorJ == 2)
+        {
+            return (funken*(double)137);
+        }
+        else
+        {
+            return Double.NaN;
+        }
     }
 }

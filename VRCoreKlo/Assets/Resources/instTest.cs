@@ -7,13 +7,13 @@ using System.IO;
 public class instTest : MonoBehaviour
 {
     public static double[,] ISMPositions;
-    //public static double[,] ISMReflections;
+    public static double[] originalPos;
 
     Vector3 startPos = new Vector3(1f,0f,1f);
     public static int numSource = 0;
-    public static GameObject[] sphereTest;
-    public AudioClip[] clips;
-    float delayTime = 1.5f;
+    public static GameObject[] ISMAudioSource;
+    public static GameObject originalAudioSource;
+    float delayTime = 3f;
     float nextTime = 0f;
 
     // Start is called before the first frame update
@@ -21,53 +21,67 @@ public class instTest : MonoBehaviour
     {
         reflectiveSurfaces.Main();
         ISMPositions = reflectiveSurfaces.GetISMs();
-        //ISMReflections = (float)getReflections.ISMReflections();
         numSource = ISMPositions.GetLength(0);
+        originalPos = reflectiveSurfaces.point;
 
+        // load audio clip to be played
+        AudioClip clip = (AudioClip)Resources.Load("dabbror");
+
+        
+        // instantiate original source 
+        GameObject OriginalAudio = (GameObject) Resources.Load("OriginalAudio");
+        originalAudioSource = new GameObject();
+        originalAudioSource = Instantiate(OriginalAudio);
+        originalAudioSource.name = "original";
+        originalAudioSource.transform.position = new Vector3((float)originalPos[0], (float)originalPos[2], (float)originalPos[1]);
+        originalAudioSource.GetComponent<AudioSource>().clip = clip;
+        
+
+        // instantiate ISM sources, change position and attatch sound clip
+        GameObject ISMAudio = (GameObject) Resources.Load("ISMAudio"); 
+        ISMAudioSource = new GameObject[numSource];
+        for (int i = 0; i < numSource; i++)
+        {
+            ISMAudioSource[i] = Instantiate(ISMAudio);
+            ISMAudioSource[i].transform.position = new Vector3((float)ISMPositions[i,0], (float)ISMPositions[i,2], (float)ISMPositions[i,1]);
+            ISMAudioSource[i].GetComponent<AudioSource>().clip = clip;
+            ISMAudioSource[i].name = i.ToString();
+        }
 
         nextTime = (float)AudioSettings.dspTime + delayTime;
-        GameObject soundSphere = (GameObject) Resources.Load("testPrefab"); 
-        sphereTest = new GameObject[numSource];
-        
-        // instantiate audio clip array, and load clips
-        clips = new AudioClip[numSource];
-        for(int i = 0; i< numSource; i++)
-        {
-            clips[i] = (AudioClip)Resources.Load("dabbror");
-        }
-        
-        // instantiate sound sources, change position and attatch sound clip
-        /*
-        for (int i = 0; i < numSource; i++)
-        {
-            sphereTest[i] = Instantiate(soundSphere);
-            sphereTest[i].transform.position = startPos + i*new Vector3((float)Math.Cos(i*2*Math.PI/numSource),0f,(float)Math.Sin(i*2*Math.PI/numSource));
-            sphereTest[i].GetComponent<AudioSource>().clip = clips[i];
-            sphereTest[i].name = i.ToString();
-        }
-        */
-        for (int i = 0; i < numSource; i++)
-        {
-            sphereTest[i] = Instantiate(soundSphere);
-            sphereTest[i].transform.position = new Vector3((float)ISMPositions[i,0], (float)ISMPositions[i,2], (float)ISMPositions[i,1]);
-            sphereTest[i].GetComponent<AudioSource>().clip = clips[i];
-            sphereTest[i].name = i.ToString();
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
+        reflectiveSurfaces.point[0] = 1f+2*Math.Cos(AudioSettings.dspTime);
+        reflectiveSurfaces.point[2] = 1f;
+        reflectiveSurfaces.point[1] = 2f+2*Math.Sin(AudioSettings.dspTime);
+
+        reflectiveSurfaces.Main();
+        ISMPositions = reflectiveSurfaces.GetISMs();
+        originalPos = reflectiveSurfaces.point;
+        originalAudioSource.transform.position = new Vector3((float)originalPos[0], (float)originalPos[2], (float)originalPos[1]);
+        for (int i = 0; i < numSource; i++)
+        {
+            ISMAudioSource[i].transform.position = new Vector3((float)ISMPositions[i,0], (float)ISMPositions[i,2], (float)ISMPositions[i,1]);
+        }
+        */
+        
         // play sound if sound source is not playing
        if(nextTime < AudioSettings.dspTime)
         {
+            originalAudioSource.GetComponent<AudioSource>().Play();
+
             for(int i = 0; i < numSource; i++)
             {
-                sphereTest[i].GetComponent<AudioSource>().Play();
+                ISMAudioSource[i].GetComponent<AudioSource>().Play();
                 //Debug.Log("play");
             }
             nextTime += delayTime;
         }
+
     }
 
     public void WriteString(string s)

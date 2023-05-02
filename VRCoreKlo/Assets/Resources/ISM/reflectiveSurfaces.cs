@@ -12,10 +12,10 @@ public class reflectiveSurfaces
     public static string[] firstWallReflects;
     public static double[,] ISMPositions;
     public static string[] ISMWallReflects;
-
+    public static double[] point = {1,2,1} ;
+    
     public static void Main() {
-        double[] point = new double[] {1,2,1};
-
+        //double[] point = new double{1,2,1};
         room.Room room = new room.Room();
         double[,,] wallVertices = room.GetWalls();
         
