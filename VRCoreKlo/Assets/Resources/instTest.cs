@@ -25,7 +25,7 @@ public class instTest : MonoBehaviour
         originalPos = reflectiveSurfaces.point;
 
         // load audio clip to be played
-        AudioClip clip = (AudioClip)Resources.Load("dabbror");
+        AudioClip clip = (AudioClip)Resources.Load("Speech_audio_quality_test_mono");
 
         
         // instantiate original source 

@@ -21,12 +21,12 @@ public class addDelay : MonoBehaviour
         if(GetComponent<AudioSource>().isPlaying)
         {        
             newOffset = delayCalc.delaySourceSamples;
-            diffOffset = newOffset - oldOffset;
+            diffOffset = newOffset - oldOffset;                  
             oldOffset = newOffset; 
             if((GetComponent<AudioSource>().timeSamples + diffOffset) < GetComponent<AudioSource>().clip.samples)
             {
                 GetComponent<AudioSource>().timeSamples += diffOffset;
-                //Debug.Log(GetComponent<AudioSource>().timeSamples.ToString());
+                Debug.Log(GetComponent<AudioSource>().name + ": " + GetComponent<AudioSource>().timeSamples.ToString());
             }
             else
             {

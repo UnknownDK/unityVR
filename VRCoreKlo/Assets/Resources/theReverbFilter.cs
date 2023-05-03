@@ -12,6 +12,8 @@ public class theReverbFilter : MonoBehaviour
     AllpassFilter filter5 = new AllpassFilter(139, 0.7f);
     AllpassFilter filter6 = new AllpassFilter(85, 0.7f);
 
+    AllpassFilter filter7 = new AllpassFilter(63, 0.7f);
+
     // Create an output signal as an array of the same length
     public float[] outputSignal = new float[256];
 
@@ -21,15 +23,17 @@ public class theReverbFilter : MonoBehaviour
     public float[] predelayBuffer = new float[predelay + 1];
     public int predelayNewIndex = 0;
     public int predelayOldIndex = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-        
         filter1.Reset();
         filter2.Reset();
         filter3.Reset();
         filter4.Reset();
-        
+        filter5.Reset();
+        filter6.Reset();
+        filter7.Reset();        
     }
 
     // Update is called once per frame
@@ -41,6 +45,9 @@ public class theReverbFilter : MonoBehaviour
             filter2.Reset();
             filter3.Reset();
             filter4.Reset();
+            filter5.Reset();
+            filter6.Reset();
+            filter7.Reset();  
         }
     }
 
@@ -55,14 +62,15 @@ public class theReverbFilter : MonoBehaviour
         outputSignal[i/2] = filter4.ProcessSample(outputSignal[i/2]);
         outputSignal[i/2] = filter5.ProcessSample(outputSignal[i/2]);
         outputSignal[i/2] = filter6.ProcessSample(outputSignal[i/2]);
+        outputSignal[i/2] = filter7.ProcessSample(outputSignal[i/2]);
         
         predelayNewIndex = (predelayNewIndex + 1) % predelayBuffer.Length;
         predelayOldIndex = (predelayOldIndex + 1) % predelayBuffer.Length;
         }
         for(int i = 0; i < data.Length; i+=2)
         {
-            data[i] += outputSignal[i/2];
-            data[i+1] += outputSignal[i/2];
+            data[i] += 0.5f*outputSignal[i/2];
+            data[i+1] += 0.5f*outputSignal[i/2];
         }
         
     }
