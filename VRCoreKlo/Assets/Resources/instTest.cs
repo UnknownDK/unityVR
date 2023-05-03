@@ -13,6 +13,9 @@ public class instTest : MonoBehaviour
     public static int numSource = 0;
     public static GameObject[] ISMAudioSource;
     public static GameObject originalAudioSource;
+
+    public static int zeroOffset = 5000;
+
     float delayTime = 3f;
     float nextTime = 0f;
 
@@ -26,7 +29,7 @@ public class instTest : MonoBehaviour
 
         // load audio clip to be played
         AudioClip clip = (AudioClip)Resources.Load("Speech_audio_quality_test_mono");
-
+        clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 
         GameObject OriginalAudio = (GameObject) Resources.Load("OriginalAudio");
@@ -36,7 +39,6 @@ public class instTest : MonoBehaviour
         originalAudioSource.transform.position = new Vector3((float)originalPos[0], (float)originalPos[2], (float)originalPos[1]);
         originalAudioSource.GetComponent<AudioSource>().clip = clip;
         
-
         // instantiate ISM sources, change position and attatch sound clip
         GameObject ISMAudio = (GameObject) Resources.Load("ISMAudio"); 
         ISMAudioSource = new GameObject[numSource];
@@ -91,5 +93,19 @@ public class instTest : MonoBehaviour
         StreamWriter writer = new StreamWriter(path, true);
         writer.WriteLine(s);
         writer.Close();
+    }
+
+    private AudioClip AddZerosToClip(AudioClip clip, int numZeros)
+    {
+        float[] data = new float[clip.samples * clip.channels];
+        float[] zeros = new float[numZeros];
+        float[] newData = new float[data.Length + zeros.Length];
+        AudioClip result = AudioClip.Create("newClip", newData.Length / 2, 2, 44100, false);
+        clip.GetData(data, 0);
+        zeros.CopyTo(newData, 0);
+        data.CopyTo(newData, zeros.Length);
+        result.SetData(newData, 0);
+        
+        return result;
     }
 }

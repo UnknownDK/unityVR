@@ -11,7 +11,7 @@ public class addDelay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        oldOffset = instTest.zeroOffset;
     }
 
 
@@ -19,9 +19,9 @@ public class addDelay : MonoBehaviour
     void Update()
     {
         if(GetComponent<AudioSource>().isPlaying)
-        {        
+        {
             newOffset = delayCalc.delaySourceSamples;
-            diffOffset = newOffset - oldOffset;                  
+            diffOffset = oldOffset - newOffset;                  
             oldOffset = newOffset; 
             if((GetComponent<AudioSource>().timeSamples + diffOffset) < GetComponent<AudioSource>().clip.samples)
             {
