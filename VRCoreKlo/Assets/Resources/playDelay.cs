@@ -67,7 +67,7 @@ public class playDelay : MonoBehaviour
             }
         }
         */
-        /*
+        
         for (int i = 0; i < data.Length; i += 1 ) 
         {
             // put output sample into buffer and then replace with correct sample, based on distance between listener and source
@@ -85,6 +85,6 @@ public class playDelay : MonoBehaviour
                 writePos = 0;
             }
         }
-        */
+        
     }
 }
