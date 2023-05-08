@@ -12,7 +12,7 @@ public class reflectiveSurfaces
     public static string[] firstWallReflects;
     public static double[,] ISMPositions;
     public static string[] ISMWallReflects;
-    public static double[] point = {1,2,1} ;
+    public static double[] point = {1,2,1.5} ;
     
     public static void Main() {
         //double[] point = new double{1,2,1};
@@ -79,7 +79,7 @@ public class reflectiveSurfaces
         return ISMPositions;
     }
 
-    public string[] GetISMWallReflects()
+    public static string[] GetISMWallReflects()
     {
         int y = 0;
         ISMWallReflects = new string[firstWallReflects.GetLength(0)+secondWallReflects.GetLength(0)];

@@ -24,6 +24,10 @@ public class theReverbFilter : MonoBehaviour
     public int predelayNewIndex = 0;
     public int predelayOldIndex = 1;
 
+    int bufferLen = 0;
+    int numBuffers = 0;
+    int filterSize = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,30 +43,24 @@ public class theReverbFilter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GetComponent<AudioSource>().isPlaying)
-        {
-            filter1.Reset();
-            filter2.Reset();
-            filter3.Reset();
-            filter4.Reset();
-            filter5.Reset();
-            filter6.Reset();
-            filter7.Reset();  
-        }
+        AudioSettings.GetDSPBufferSize(out bufferLen, out numBuffers);
+        Debug.Log("buffer length: " + bufferLen); 
+        Debug.Log("number of buffers: " + numBuffers);
+        Debug.Log("filter size: " + filterSize);
     }
 
     void OnAudioFilterRead(float[] data, int channels)
     {
         for(int i = 0; i < data.Length; i+=2)
         {
-        predelayBuffer[predelayNewIndex] = pregain * data[i];
+        predelayBuffer[predelayNewIndex] = pregain * ((data[i] + data[i+1])/2);
         outputSignal[i/2] = filter1.ProcessSample(predelayBuffer[predelayOldIndex]);
         outputSignal[i/2] = filter2.ProcessSample(outputSignal[i/2]);
         outputSignal[i/2] = filter3.ProcessSample(outputSignal[i/2]);
         outputSignal[i/2] = filter4.ProcessSample(outputSignal[i/2]);
-        outputSignal[i/2] = filter5.ProcessSample(outputSignal[i/2]);
-        outputSignal[i/2] = filter6.ProcessSample(outputSignal[i/2]);
-        outputSignal[i/2] = filter7.ProcessSample(outputSignal[i/2]);
+        //outputSignal[i/2] = filter5.ProcessSample(outputSignal[i/2]);
+        //outputSignal[i/2] = filter6.ProcessSample(outputSignal[i/2]);
+        //outputSignal[i/2] = filter7.ProcessSample(outputSignal[i/2]);
         
         predelayNewIndex = (predelayNewIndex + 1) % predelayBuffer.Length;
         predelayOldIndex = (predelayOldIndex + 1) % predelayBuffer.Length;
@@ -72,6 +70,7 @@ public class theReverbFilter : MonoBehaviour
             data[i] += 0.5f*outputSignal[i/2];
             data[i+1] += 0.5f*outputSignal[i/2];
         }
-        
+
+        filterSize = data.Length;
     }
 }

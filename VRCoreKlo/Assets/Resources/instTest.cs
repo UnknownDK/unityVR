@@ -8,13 +8,14 @@ public class instTest : MonoBehaviour
 {
     public static double[,] ISMPositions;
     public static double[] originalPos;
+    public static string[] wallsReflectedOn;
 
     Vector3 startPos = new Vector3(1f,0f,1f);
     public static int numSource = 0;
     public static GameObject[] ISMAudioSource;
     public static GameObject originalAudioSource;
 
-    public static int zeroOffset = 5000;
+    public static int zeroOffset = 10000;
 
     float delayTime = 3f;
     float nextTime = 0f;
@@ -26,9 +27,15 @@ public class instTest : MonoBehaviour
         ISMPositions = reflectiveSurfaces.GetISMs();
         numSource = ISMPositions.GetLength(0);
         originalPos = reflectiveSurfaces.point;
+       
+        wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();
+        
+        for(int i = 0; i <wallsReflectedOn.Length; i++){
+            Debug.Log(wallsReflectedOn[i]);
+        }
 
         // load audio clip to be played
-        AudioClip clip = (AudioClip)Resources.Load("Speech_audio_quality_test_mono");
+        AudioClip clip = (AudioClip)Resources.Load("short_speech_audio_quality_test_mono");
         clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 
@@ -72,7 +79,7 @@ public class instTest : MonoBehaviour
         */
         
         // play sound if sound source is not playing
-       if(nextTime < AudioSettings.dspTime)
+       if(nextTime < AudioSettings.dspTime && !originalAudioSource.GetComponent<AudioSource>().isPlaying)
         {
             originalAudioSource.GetComponent<AudioSource>().Play();
 
@@ -83,7 +90,11 @@ public class instTest : MonoBehaviour
             }
             nextTime += delayTime;
         }
-
+        int bufferLen = 0;
+        int numBuffers = 0;
+        AudioSettings.GetDSPBufferSize(out bufferLen, out numBuffers);
+        //Debug.Log("buffer length: " + bufferLen); 
+        //Debug.Log("number of buffers: " + numBuffers);
     }
 
     public void WriteString(string s)
@@ -100,7 +111,7 @@ public class instTest : MonoBehaviour
         float[] data = new float[clip.samples * clip.channels];
         float[] zeros = new float[numZeros];
         float[] newData = new float[data.Length + zeros.Length];
-        AudioClip result = AudioClip.Create("newClip", newData.Length / 2, 2, 44100, false);
+        AudioClip result = AudioClip.Create(clip.name, newData.Length, 1, 44100, false);
         clip.GetData(data, 0);
         zeros.CopyTo(newData, 0);
         data.CopyTo(newData, zeros.Length);

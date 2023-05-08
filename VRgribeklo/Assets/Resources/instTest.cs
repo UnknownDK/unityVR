@@ -33,7 +33,7 @@ public class instTest : MonoBehaviour
         clips = new AudioClip[numSource];
         for(int i = 0; i< numSource; i++)
         {
-            clips[i] = (AudioClip)Resources.Load("impuls");
+            clips[i] = (AudioClip)Resources.Load("bounce");
         }
         
         // instantiate sound sources, change position and attatch sound clip
