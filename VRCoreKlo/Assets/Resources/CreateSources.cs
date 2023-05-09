@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class instTest : MonoBehaviour
+public class CreateSources : MonoBehaviour
 {
     public static double[,] ISMPositions;
     public static double[] originalPos;
-    public static string[] wallsReflectedOn;
+    public static int[,] wallsReflectedOn;
 
     Vector3 startPos = new Vector3(1f,0f,1f);
     public static int numSource = 0;
@@ -29,10 +29,11 @@ public class instTest : MonoBehaviour
         originalPos = reflectiveSurfaces.point;
        
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();
-        
-        for(int i = 0; i <wallsReflectedOn.Length; i++){
-            Debug.Log(wallsReflectedOn[i]);
+        /*
+        for(int i = 0; i <wallsReflectedOn.GetLength(0); i++){
+            Debug.Log(wallsReflectedOn[i,0].ToString() + wallsReflectedOn[i,1].ToString());
         }
+        */
 
         // load audio clip to be played
         AudioClip clip = (AudioClip)Resources.Load("short_speech_audio_quality_test_mono");
@@ -63,6 +64,7 @@ public class instTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // update position of sources each frame, moves in circles as is
         /*
         reflectiveSurfaces.point[0] = 1f+2*Math.Cos(AudioSettings.dspTime);
         reflectiveSurfaces.point[2] = 1f;
