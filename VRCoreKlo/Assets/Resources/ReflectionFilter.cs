@@ -33,7 +33,7 @@ public class ReflectionFilter : MonoBehaviour
         {
             for(int i = 0; i < data.Length; i++)
             {
-                data[i] = ApplyFilter.applyFilter(data[i], coefficients);
+                data[i] = ApplyFilterCircBuffLoop4.applyFilter(data[i], coefficients);
             }
         }
        

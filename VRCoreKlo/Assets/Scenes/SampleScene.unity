@@ -1658,8 +1658,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  predelayNewIndex: 798
-  predelayOldIndex: 799
+  predelayNewIndex: 56
+  predelayOldIndex: 57
 --- !u!1 &8189585
 GameObject:
   m_ObjectHideFlags: 0
@@ -5275,7 +5275,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
