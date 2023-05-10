@@ -28,12 +28,7 @@ public class CreateSources : MonoBehaviour
         numSource = ISMPositions.GetLength(0);
         originalPos = reflectiveSurfaces.point;
        
-        wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();
-        /*
-        for(int i = 0; i <wallsReflectedOn.GetLength(0); i++){
-            Debug.Log(wallsReflectedOn[i,0].ToString() + wallsReflectedOn[i,1].ToString());
-        }
-        */
+        wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     
 
         // load audio clip to be played
         AudioClip clip = (AudioClip)Resources.Load("short_speech_audio_quality_test_mono");

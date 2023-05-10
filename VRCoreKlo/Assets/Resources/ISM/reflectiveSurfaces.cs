@@ -12,7 +12,7 @@ public class reflectiveSurfaces
     public static int[,] firstWallReflects;
     public static double[,] ISMPositions;
     public static int[,] ISMWallReflects;
-    public static double[] point = {1,2,1.5} ;
+    public static double[] point = {2.065,1.28,1.16} ;
     
     public static void Main() {
         //double[] point = new double{1,2,1};

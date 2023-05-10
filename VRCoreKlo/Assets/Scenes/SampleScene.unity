@@ -1658,8 +1658,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  predelayNewIndex: 944
-  predelayOldIndex: 945
+  predelayNewIndex: 798
+  predelayOldIndex: 799
 --- !u!1 &8189585
 GameObject:
   m_ObjectHideFlags: 0
@@ -5275,7 +5275,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -6598,7 +6598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804073898}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.108213, y: 0.65, z: 3.722561}
+  m_LocalPosition: {x: 2.065, y: 1.16, z: 6.51}
   m_LocalScale: {x: 1, y: 0.71209, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8014,7 +8014,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031110490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1176, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
