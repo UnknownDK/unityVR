@@ -30,8 +30,8 @@ public class CreateSources : MonoBehaviour
        
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     
 
-        // load audio clip to be played
-        AudioClip clip = (AudioClip)Resources.Load("short_speech_audio_quality_test_mono");
+        // load audio clip to be played and add zeros to the beginning
+        AudioClip clip = (AudioClip)Resources.Load("Audio_test_boosted");
         clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 
@@ -79,19 +79,12 @@ public class CreateSources : MonoBehaviour
        if(nextTime < AudioSettings.dspTime && !originalAudioSource.GetComponent<AudioSource>().isPlaying)
         {
             originalAudioSource.GetComponent<AudioSource>().Play();
-
             for(int i = 0; i < numSource; i++)
             {
                 ISMAudioSource[i].GetComponent<AudioSource>().Play();
-                //Debug.Log("play");
             }
-            nextTime += delayTime;
+            nextTime = (float)AudioSettings.dspTime+ delayTime;
         }
-        int bufferLen = 0;
-        int numBuffers = 0;
-        AudioSettings.GetDSPBufferSize(out bufferLen, out numBuffers);
-        //Debug.Log("buffer length: " + bufferLen); 
-        //Debug.Log("number of buffers: " + numBuffers);
     }
 
     public void WriteString(string s)

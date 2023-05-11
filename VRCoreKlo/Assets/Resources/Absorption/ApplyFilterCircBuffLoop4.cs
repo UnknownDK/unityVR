@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ApplyFilterCircBuffLoop4 {
+public class ApplyFilterCircBuffLoop4 {
     private static float[] internalBuffer = new float[30];
     private static float[] internalBuffer2 = new float[59];
     private static int newBufferIndex = 0;
     
     //private static float[] twoFilters;
     //private static float[] coefficients; 
-    public static float applyFilter(float input, float[] coefficients) {
+    public float applyFilter(float input, float[] coefficients) {
         if (coefficients.Length > 30 )
         {
             float output1 = 0f;

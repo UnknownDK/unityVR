@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ApplyFilterNoOpt {
+public class ApplyFilterNoOpt {
     private static float[] internalBuffer = new float[30];
     private static float[] internalBuffer2 = new float[59];
     //private static string filename = "Filters.txt";
     
     //private static float[] twoFilters;
     //private static float[] coefficients; 
-    public static float applyFilter(float input, float[] coefficients) {
+    public float applyFilter(float input, float[] coefficients) {
         float output = 0f;
 
         if (coefficients.Length > 30 )

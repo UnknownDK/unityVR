@@ -8,8 +8,8 @@ public class ReflectionFilter : MonoBehaviour
     private static int[] walls = new int[2];
     public static float[] coefficients;
     FirFilter filter = new FirFilter();
-    public static float[] samps = new float[512];
-    public static float[] samps1 = new float[512];
+    ApplyFilterCircBuffDyna ApplyFilterLeft = new ApplyFilterCircBuffDyna();
+    ApplyFilterCircBuffDyna ApplyFilterRight = new ApplyFilterCircBuffDyna();
     private static bool rdy = false;
 
     // Start is called before the first frame update
@@ -18,6 +18,8 @@ public class ReflectionFilter : MonoBehaviour
         walls[0] = CreateSources.wallsReflectedOn[int.Parse(name),0];
         walls[1] = CreateSources.wallsReflectedOn[int.Parse(name),1];
         coefficients = filter.FirFilterFunc(walls);
+        ApplyFilterLeft.setFilterLength(coefficients.Length);
+        ApplyFilterRight.setFilterLength(coefficients.Length);
         rdy = true;
     }
 
@@ -31,11 +33,11 @@ public class ReflectionFilter : MonoBehaviour
     {
         if(rdy)
         {
-            for(int i = 0; i < data.Length; i++)
+            for(int i = 0; i < data.Length; i+=2)
             {
-                data[i] = ApplyFilterCircBuffLoop4.applyFilter(data[i], coefficients);
+                data[i] = ApplyFilterLeft.applyFilter(data[i], coefficients);
+                data[i+1] = ApplyFilterRight.applyFilter(data[i+1], coefficients);
             }
         }
-       
     }
 }

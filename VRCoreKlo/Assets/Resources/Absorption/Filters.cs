@@ -10,7 +10,7 @@ public class FirFilter {
 
     public float[] FirFilterFunc(int[] wallsHit) 
     {
-        FilterCoeffs.assignFilter();
+        FilterCoeffs.assignFilterO1131();
         filterCoefficients = FilterCoeffs.coefficients;
         if (wallsHit[1] < 0)
         {

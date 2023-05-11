@@ -1658,8 +1658,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  predelayNewIndex: 56
-  predelayOldIndex: 57
+  predelayNewIndex: 708
+  predelayOldIndex: 709
 --- !u!1 &8189585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6589,7 +6589,7 @@ MonoBehaviour:
   m_OriginBaseGameObject: {fileID: 804073898}
   m_CameraFloorOffsetObject: {fileID: 1031110490}
   m_RequestedTrackingOriginMode: 0
-  m_CameraYOffset: 1.1176
+  m_CameraYOffset: 0
 --- !u!4 &804073901
 Transform:
   m_ObjectHideFlags: 0

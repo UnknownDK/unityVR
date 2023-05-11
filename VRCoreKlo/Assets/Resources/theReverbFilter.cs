@@ -19,10 +19,6 @@ public class theReverbFilter : MonoBehaviour
     public int predelayNewIndex = 0;
     public int predelayOldIndex = 1;
 
-    //int bufferLen = 0;
-    //int numBuffers = 0;
-    int filterSize = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -35,12 +31,7 @@ public class theReverbFilter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        AudioSettings.GetDSPBufferSize(out bufferLen, out numBuffers);
-        Debug.Log("buffer length: " + bufferLen); 
-        Debug.Log("number of buffers: " + numBuffers);
-        Debug.Log("filter size: " + filterSize);
-        */
+
     }
 
     void OnAudioFilterRead(float[] data, int channels)
@@ -61,7 +52,5 @@ public class theReverbFilter : MonoBehaviour
             data[i] += 0.5f*outputSignal[i/2];
             data[i+1] += 0.5f*outputSignal[i/2];
         }
-
-        filterSize = data.Length;
     }
 }
