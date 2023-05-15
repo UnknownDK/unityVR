@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FilterCoeffs : MonoBehaviour
+public class FilterCoeffs
 {
     public static float[][] coefficients = new float[6][];
     
@@ -25,11 +25,11 @@ public class FilterCoeffs : MonoBehaviour
         coefficients[5] = new float[31] {0.972693305374769f,-0.0143335731190808f,-0.0135772464189683f,-0.0124761365552f,-0.011140171183814f,-0.00969532872397847f,-0.00826489930296828f,-0.00695247265818185f,-0.00582959899821049f,-0.00493000494903876f,-0.00425085192126449f,-0.00376011123322348f,-0.00340800236531952f,-0.00313982286961753f,-0.00290748991250166f,-0.00267767129430698f,-0.00243534095262557f,-0.00218270523777834f,-0.00193445035074107f,-0.00171094279914802f,-0.00153125101361026f,-0.00140763930000554f,-0.00134261401152479f,-0.00132884932949194f,-0.00135158540109179f,-0.00139254911656543f,-0.00143420677619636f,-0.00146324182744955f,-0.00147250007261952f,-0.00146113967473837f,-0.00143322070396168f};
     }
     public static void assignFilter08() {
-        coefficients[0] = new float[1] {0.8f};
-        coefficients[1] = new float[1] {0.8f};
-        coefficients[2] = new float[1] {0.8f};
-        coefficients[3] = new float[1] {0.8f};
-        coefficients[4] = new float[1] {0.8f};
-        coefficients[5] = new float[1] {0.8f};
+        coefficients[0] = new float[2] {0.8f, 0.01f};
+        coefficients[1] = new float[2] {0.8f, 0.01f};
+        coefficients[2] = new float[2] {0.8f, 0.01f};
+        coefficients[3] = new float[2] {0.8f, 0.01f};
+        coefficients[4] = new float[2] {0.8f, 0.01f};
+        coefficients[5] = new float[2] {0.8f, 0.01f};
     }
 }

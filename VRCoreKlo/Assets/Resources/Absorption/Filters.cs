@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FirFilter {
-    //private static float 
-    private float[] _coefficients;
+    private float[] coefficients;
     private static float[][] filterCoefficients;
 
     public float[] FirFilterFunc(int[] wallsHit) 
@@ -14,13 +13,13 @@ public class FirFilter {
         filterCoefficients = FilterCoeffs.coefficients;
         if (wallsHit[1] < 0)
         {
-            _coefficients = filterCoefficients[wallsHit[0]];
+            coefficients = filterCoefficients[wallsHit[0]];
         }
         else
         {
-            _coefficients = Convolve.Convo(filterCoefficients[wallsHit[0]], filterCoefficients[wallsHit[1]]);
+            coefficients = Convolve.Convo(filterCoefficients[wallsHit[0]], filterCoefficients[wallsHit[1]]);
         }
-        return _coefficients;
+        return coefficients;
     }
 }
 

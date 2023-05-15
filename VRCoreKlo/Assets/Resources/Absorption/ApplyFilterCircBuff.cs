@@ -8,8 +8,6 @@ public class ApplyFilterCircBuff {
     private static float[] internalBuffer2 = new float[59];
     private static int newBufferIndex = 0;
     
-    //private static float[] twoFilters;
-    //private static float[] coefficients; 
     public float applyFilter(float input, float[] coefficients) {
         float output = 0f;
 
@@ -19,7 +17,7 @@ public class ApplyFilterCircBuff {
             int m = internalBuffer2.Length;
             for (int i = 0; i < m; i++) 
             {
-                output += internalBuffer2[(newBufferIndex + i) % internalBuffer2.Length]*coefficients[i];
+                output += internalBuffer2[(newBufferIndex + m - i) % m]*coefficients[i];
             }
             newBufferIndex = (newBufferIndex + 1) % internalBuffer2.Length;
         } 
@@ -29,7 +27,7 @@ public class ApplyFilterCircBuff {
             int m = internalBuffer.Length; 
             for (int i = 0; i < m; i++) 
             {
-                output += internalBuffer[(newBufferIndex + i) % internalBuffer.Length]*coefficients[i];
+                output += internalBuffer[(newBufferIndex + m - i) % m]*coefficients[i];
             }
             newBufferIndex = (newBufferIndex + 1) % internalBuffer.Length;
         }

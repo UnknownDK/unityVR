@@ -16,7 +16,7 @@ public class ApplyFilterCircBuffDyna {
         internalBuffer[newBufferIndex] = input;
         for (int i = 0; i < internalBuffer.Length; i++) 
         {
-            output += internalBuffer[(newBufferIndex + i) % internalBuffer.Length]*coefficients[i];
+            output += internalBuffer[(newBufferIndex + internalBuffer.Length - i) % internalBuffer.Length]*coefficients[i];
         }
         newBufferIndex = (newBufferIndex + 1) % internalBuffer.Length;        
         return output;

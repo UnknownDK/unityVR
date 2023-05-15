@@ -21,7 +21,6 @@ public static class Convolve
                 sum += array1[j] * array2[i - j];
             }
             result[i] = sum;
-            //Console.WriteLine(result[i]);
         }
 
         return result;

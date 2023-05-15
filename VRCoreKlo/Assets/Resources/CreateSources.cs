@@ -26,12 +26,13 @@ public class CreateSources : MonoBehaviour
         reflectiveSurfaces.Main();
         ISMPositions = reflectiveSurfaces.GetISMs();
         numSource = ISMPositions.GetLength(0);
+        //numSource = 0;
         originalPos = reflectiveSurfaces.point;
        
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     
 
         // load audio clip to be played and add zeros to the beginning
-        AudioClip clip = (AudioClip)Resources.Load("Audio_test_boosted");
+        AudioClip clip = (AudioClip)Resources.Load("SineSweep1");
         clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 
@@ -40,6 +41,7 @@ public class CreateSources : MonoBehaviour
         originalAudioSource = Instantiate(OriginalAudio);
         originalAudioSource.name = "original";
         originalAudioSource.transform.position = new Vector3((float)originalPos[0], (float)originalPos[2], (float)originalPos[1]);
+
         originalAudioSource.GetComponent<AudioSource>().clip = clip;
         
         // instantiate ISM sources, change position and attatch sound clip
@@ -49,6 +51,7 @@ public class CreateSources : MonoBehaviour
         {
             ISMAudioSource[i] = Instantiate(ISMAudio);
             ISMAudioSource[i].transform.position = new Vector3((float)ISMPositions[i,0], (float)ISMPositions[i,2], (float)ISMPositions[i,1]);
+            
             ISMAudioSource[i].GetComponent<AudioSource>().clip = clip;
             ISMAudioSource[i].name = i.ToString();
         }
@@ -83,7 +86,7 @@ public class CreateSources : MonoBehaviour
             {
                 ISMAudioSource[i].GetComponent<AudioSource>().Play();
             }
-            nextTime = (float)AudioSettings.dspTime+ delayTime;
+            nextTime = (float)AudioSettings.dspTime + delayTime;
         }
     }
 
