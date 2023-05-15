@@ -19,7 +19,7 @@ public class ReflectionFilter : MonoBehaviour
         walls[1] = CreateSources.wallsReflectedOn[int.Parse(name),1];
         coefficients = filter.FirFilterFunc(walls);
         ApplyFilterLeft.setFilterLength(coefficients.Length);
-        ApplyFilterRight.setFilterLength(coefficients.Length);
+        ApplyFilterRight.setFilterLength(coefficients.Length); 
         rdy = true;
     }
 

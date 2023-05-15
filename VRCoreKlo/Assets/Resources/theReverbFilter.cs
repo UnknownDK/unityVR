@@ -13,9 +13,9 @@ public class theReverbFilter : MonoBehaviour
     public float[] outputSignal = new float[256];
 
     // Artificial delay and gain
-    public static int predelay   = 1073;
+    //public static int predelay   = 0;
     public float pregain = 2.7368f;
-    public float[] predelayBuffer = new float[predelay + 1];
+    //public float[] predelayBuffer = new float[predelay + 1];
     public int predelayNewIndex = 0;
     public int predelayOldIndex = 1;
 
@@ -38,14 +38,14 @@ public class theReverbFilter : MonoBehaviour
     {
         for(int i = 0; i < data.Length; i+=2)
         {
-            predelayBuffer[predelayNewIndex] = pregain * ((data[i] + data[i+1])/2);
-            outputSignal[i/2] = filter1.ProcessSample(predelayBuffer[predelayOldIndex]);
+            //predelayBuffer[predelayNewIndex] = pregain * ((data[i] + data[i+1])/2);
+            outputSignal[i/2] = filter1.ProcessSample(pregain * ((data[i] + data[i+1])/2));
             outputSignal[i/2] = filter2.ProcessSample(outputSignal[i/2]);
             outputSignal[i/2] = filter3.ProcessSample(outputSignal[i/2]);
             outputSignal[i/2] = filter4.ProcessSample(outputSignal[i/2]);
 
-            predelayNewIndex = (predelayNewIndex + 1) % predelayBuffer.Length;
-            predelayOldIndex = (predelayOldIndex + 1) % predelayBuffer.Length;
+            //predelayNewIndex = (predelayNewIndex + 1) % predelayBuffer.Length;
+            //predelayOldIndex = (predelayOldIndex + 1) % predelayBuffer.Length;
         }
         for(int i = 0; i < data.Length; i+=2)
         {
