@@ -7,11 +7,10 @@ public class addDelay : MonoBehaviour
     int newOffset = 0;
     int oldOffset = 0;
     int diffOffset = 0;
-
     // Start is called before the first frame update
     void Start()
     {
-        
+        oldOffset = CreateSources.zeroOffset;
     }
 
 
@@ -19,20 +18,19 @@ public class addDelay : MonoBehaviour
     void Update()
     {
         if(GetComponent<AudioSource>().isPlaying)
-        {        
+        {
             newOffset = delayCalc.delaySourceSamples;
-            diffOffset = newOffset - oldOffset;
+            diffOffset = oldOffset - newOffset;                  
             oldOffset = newOffset; 
-
             if((GetComponent<AudioSource>().timeSamples + diffOffset) < GetComponent<AudioSource>().clip.samples)
             {
                 GetComponent<AudioSource>().timeSamples += diffOffset;
-                //Debug.Log(GetComponent<AudioSource>().timeSamples.ToString());
+                //Debug.Log(GetComponent<AudioSource>().name + ": " + GetComponent<AudioSource>().timeSamples.ToString());
             }
             else
             {
                 GetComponent<AudioSource>().Stop();
-                oldOffset = 0;
+                oldOffset = CreateSources.zeroOffset;
                 newOffset = 0;
                 diffOffset = 0;
             }
@@ -41,10 +39,9 @@ public class addDelay : MonoBehaviour
         {
             GetComponent<AudioSource>().timeSamples = 0;
             GetComponent<AudioSource>().Stop();
-            oldOffset = 0;
+            oldOffset = CreateSources.zeroOffset;
             newOffset = 0;
             diffOffset = 0;
-            //GetComponent<AudioSource>().Play();
         }
     }
 }

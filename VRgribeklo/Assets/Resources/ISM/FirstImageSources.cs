@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class FirstImageSources : MonoBehaviour
+public class FirstImageSources
 {
     private double[,] pointVectors;
     private double[,] imageSources;
@@ -11,7 +11,7 @@ public class FirstImageSources : MonoBehaviour
     private int noOfWalls;
     private int noOfCoords;
     private double[,] projection;
-    private string[] wallsReflectedOn;
+    private int[,] wallsReflectedOn;
     
     public void FirstImageSourcesFun(double[] point, double[,] wallNormals, double[,,] wallVertices) 
     {
@@ -41,17 +41,18 @@ public class FirstImageSources : MonoBehaviour
         }
         Projection projections = new Projection(wallNormals, pointVectors);
         projection = projections.GetProjections();
-        wallsReflectedOn = new string[noOfWalls];
+        wallsReflectedOn = new int[noOfWalls,2];
         for (int i = 0; i < noOfWalls; i++)
         {
             for (int j = 0; j < noOfCoords; j++)
             {
                 imageSources[i, j] = point[j] - 2 * projection[i, j];
             }
-            wallsReflectedOn[i] = i.ToString(); 
+            wallsReflectedOn[i,0] = i; 
+            wallsReflectedOn[i,1] = -1; // not a wall, but we dont want it to be zero
         }
     }
-    public Tuple<double[,],double[,], string[]> GetFirstImageSourcesAndProj() {
+    public Tuple<double[,],double[,], int[,]> GetFirstImageSourcesAndProj() {
         return Tuple.Create(imageSources, projection, wallsReflectedOn);
     }
 }
