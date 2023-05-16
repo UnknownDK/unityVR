@@ -17,7 +17,7 @@ public class CreateSources : MonoBehaviour
 
     public static int zeroOffset = 10000;
 
-    float delayTime = 3f;
+    float delayTime = 35f;
     float nextTime = 0f;
 
     // Start is called before the first frame update
@@ -56,7 +56,7 @@ public class CreateSources : MonoBehaviour
             ISMAudioSource[i].name = i.ToString();
         }
 
-        nextTime = (float)AudioSettings.dspTime + delayTime;
+        nextTime = (float)AudioSettings.dspTime + 2f;
     }
 
     // Update is called once per frame

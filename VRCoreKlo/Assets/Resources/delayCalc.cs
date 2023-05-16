@@ -27,7 +27,6 @@ public class delayCalc : MonoBehaviour
         sourcePos[2] = transform.position.z;
         
         delaySourceSamples = getDelay(camPos, sourcePos); // calculate sample delay
-        //instTest.WriteString(delaySourceSamples.ToString()); // save sample delay to file
     }
 
 
