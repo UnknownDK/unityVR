@@ -25,6 +25,8 @@ public class theReflectionFilter : MonoBehaviour
     ReflectionFilter_revamp filterL;
     ReflectionFilter_revamp filterR;
 
+    bool ready = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,8 +57,10 @@ public class theReflectionFilter : MonoBehaviour
 
         filterL = new ReflectionFilter_revamp(coefficients[Int32.Parse(name)]);
         filterR = new ReflectionFilter_revamp(coefficients[Int32.Parse(name)]);
+
         filterL.Reset();
-        filterR.Reset();      
+        filterR.Reset();   
+        ready = true;   
     }
 
     // Update is called once per frame
@@ -67,6 +71,8 @@ public class theReflectionFilter : MonoBehaviour
 
     void OnAudioFilterRead(float[] data, int channels)
     {
+        if(!ready)
+            return;
         for(int i = 0; i < data.Length; i+=2)
         {
             data[i]     = filterL.ProcessSample(data[i]);
