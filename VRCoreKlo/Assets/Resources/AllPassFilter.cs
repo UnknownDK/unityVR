@@ -11,7 +11,7 @@ public class AllpassFilter
     private float[] inputBuffer;
     private int oldIndex;
     private int newIndex;
-    private int delay;
+    private int delay; 
 
     public AllpassFilter(int delay, float gain)
     {
