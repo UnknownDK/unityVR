@@ -8,8 +8,8 @@ public class ReflectionFilter : MonoBehaviour
     private static int[] walls = new int[2];
     public static float[] coefficients;
     FirFilter filter = new FirFilter();
-    ApplyFilterCircBuffDyna ApplyFilterLeft = new ApplyFilterCircBuffDyna();
-    ApplyFilterCircBuffDyna ApplyFilterRight = new ApplyFilterCircBuffDyna();
+    ApplyFilterNoOptNew ApplyFilterLeft = new ApplyFilterNoOptNew();
+    ApplyFilterNoOptNew ApplyFilterRight = new ApplyFilterNoOptNew();
     private static bool rdy = false;
 
     // Start is called before the first frame update

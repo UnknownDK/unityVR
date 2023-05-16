@@ -11,6 +11,8 @@ public class FirFilter {
     {
         FilterCoeffs.assignFilterO1131();
         filterCoefficients = FilterCoeffs.coefficients;
+        coefficients = filterCoefficients[wallsHit[0]];
+        
         if (wallsHit[1] < 0)
         {
             coefficients = filterCoefficients[wallsHit[0]];
@@ -19,6 +21,7 @@ public class FirFilter {
         {
             coefficients = Convolve.Convo(filterCoefficients[wallsHit[0]], filterCoefficients[wallsHit[1]]);
         }
+
         return coefficients;
     }
 }

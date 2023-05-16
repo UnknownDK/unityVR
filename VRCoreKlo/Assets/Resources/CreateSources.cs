@@ -26,7 +26,7 @@ public class CreateSources : MonoBehaviour
         reflectiveSurfaces.Main();
         ISMPositions = reflectiveSurfaces.GetISMs();
         numSource = ISMPositions.GetLength(0);
-        //numSource = 1;
+        //numSource = 0;
         originalPos = reflectiveSurfaces.point;
        
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     

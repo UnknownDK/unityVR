@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SecondImageSources : MonoBehaviour
+public class SecondImageSources
 {
     private double[,] imageSources;
     private int noOfCoords;
@@ -14,9 +14,9 @@ public class SecondImageSources : MonoBehaviour
     private double[] dotNormalPointvector;
     private double[,] pointVectors;
     private double[,] projection;
-    private string[] wallsReflectedOn;
+    private int[,] wallsReflectedOn;
     
-    public void SecondImageSourcesFun(double[,] firstImages, double[,] wallNormals, double[,,] wallVertices, double[] point, string[] firstWallReflects) 
+    public void SecondImageSourcesFun(double[,] firstImages, double[,] wallNormals, double[,,] wallVertices, double[] point, int[,] firstWallReflects) 
     {
         noOfCoords = firstImages.GetLength(1); //X, Y, Z
         noOfProjs = wallNormals.GetLength(0); //Antal normaler, vi har
@@ -26,7 +26,7 @@ public class SecondImageSources : MonoBehaviour
         checkSumSovs = new double[noOfOldSovser*noOfProjs]; 
         for (int j = 0; j < noOfCoords; j++) // lægger OG kilde ind
         {
-            checkSumSovs[0] += arbitraryFunction(point[j], j);
+            checkSumSovs[0] += Math.Round(arbitraryFunction(point[j], j),3);
         }
         checkSum.Add(checkSumSovs[0]);
 
@@ -35,16 +35,15 @@ public class SecondImageSources : MonoBehaviour
         {
             for (int j = 0; j < noOfCoords; j++)
             {
-                checkSumSovs[o] += arbitraryFunction(firstImages[o, j], j);
+                checkSumSovs[o] += Math.Round(arbitraryFunction(firstImages[o, j], j),3);
             }
-            //Console.WriteLine("GAMLE CHECKSUMS: {0}", checkSumSovs[o]);
             checkSum.Add(checkSumSovs[o]);
         }
 
         checkSumSovs = new double[noOfOldSovser*noOfProjs]; // nulstil
         imageSources = new double[noOfOldSovser*noOfProjs, noOfCoords]; // Den skal evaluere 36 
         imageDummy = new double[noOfOldSovser*noOfProjs, noOfCoords]; // Holder kilderne, før der bliver tjekket, om de allerede er i listen
-        wallsReflectedOn = new string[noOfOldSovser*noOfProjs];
+        wallsReflectedOn = new int[noOfOldSovser*noOfProjs,2];
 
         ////////////// HER BEGYNDER SELVE ISM
         int y = 0; // indeksering
@@ -83,29 +82,27 @@ public class SecondImageSources : MonoBehaviour
             {
                 for (int j = 0; j < noOfCoords; j++)
                 {
-                    imageDummy[y, j] = firstImages[o, j] - 2 * projection[q, j];
-                    checkSumSovs[y] += arbitraryFunction(imageDummy[y, j], j);
+                    imageDummy[y, j] = Math.Round(firstImages[o, j] - 2 * projection[q, j],3);
+                    checkSumSovs[y] += Math.Round(arbitraryFunction(imageDummy[y, j], j),3);
                 }
                 if (!imageContainedCheck(checkSumSovs[y], checkSum))
                 {
                     sovserAdded++;
-                    //Console.WriteLine("Sovser tilføjet: {0}", sovserAdded);
                     for(int j = 0; j < noOfCoords; j++)
                     {
-                        imageSources[y, j] = Math.Round(imageDummy[y, j],3);
+                        imageSources[y, j] = imageDummy[y, j];
                     }
                     checkSum.Add(checkSumSovs[y]);
-                    wallsReflectedOn[y] = o.ToString() + " -> " + q.ToString();
+                    wallsReflectedOn[y,0] = o;
+                    wallsReflectedOn[y,1] = q;
                 }
                 else
                 {
-                    //Console.WriteLine("IMAGE SOURCE ALREADY CONTAINED!!");
                     for(int j = 0; j < noOfCoords; j++)
                     {
                         imageSources[y, j] = Double.NaN;
                     }
                 }
-                //Console.WriteLine(wallsReflectedOn[y]);
                 y++;
             }  
         } // FOR-LOOP MED noOfOldSovser
@@ -119,7 +116,7 @@ public class SecondImageSources : MonoBehaviour
         return imageSources;
     }
 
-    public string[] GetSecondReflects() {
+    public int[,] GetSecondReflects() {
         return wallsReflectedOn;
     }
     public bool imageContainedCheck(double checkSumSovs, List<double> checkSum){ // Det her behøver ikke være en funktion for sig selv, men er et levn
@@ -134,6 +131,21 @@ public class SecondImageSources : MonoBehaviour
     }
     public double arbitraryFunction(double funken, int iteratorJ)
     {
-        return (funken*(iteratorJ+1)*181 + funken*(iteratorJ+2)*389 + funken*(iteratorJ+3)*137); // primtal
+        if(iteratorJ == 0)
+        {
+            return (funken*(double)181); // primtal
+        }
+        else if(iteratorJ == 1)
+        {
+            return (funken*(double)389);
+        }
+        else if(iteratorJ == 2)
+        {
+            return (funken*(double)137);
+        }
+        else
+        {
+            return Double.NaN;
+        }
     }
 }
