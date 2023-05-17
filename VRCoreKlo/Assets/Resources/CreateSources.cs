@@ -109,7 +109,7 @@ public class CreateSources : MonoBehaviour
         zeros.CopyTo(newData, 0);
         data.CopyTo(newData, zeros.Length);
         result.SetData(newData, 0);
-        
+
         return result;
     }
 }
