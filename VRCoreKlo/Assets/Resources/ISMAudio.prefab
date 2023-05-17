@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 471951438322145028}
   - component: {fileID: -7913479662512873334}
   - component: {fileID: -2847551066337768901}
-  - component: {fileID: -3038184636650848539}
   - component: {fileID: 3653084667687988869}
   m_Layer: 0
   m_Name: ISMAudio
@@ -251,21 +250,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9214977942129304207}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1c169a9ea8eeed43b8334bb64b595e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-3038184636650848539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9214977942129304207}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0658a680e56d3341aa6ac2d406b166e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3653084667687988869

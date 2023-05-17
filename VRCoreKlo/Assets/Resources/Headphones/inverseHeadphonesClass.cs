@@ -5,7 +5,7 @@ using System;
 
 public class InverseHeadphones
 {
-    private float[2][] coefficients;
+    private float[][] coefficients = new float[2][];
     private float[] internalBuffer;
 
 
@@ -13,7 +13,7 @@ public class InverseHeadphones
     {
         coefficients[0] = coefs_a;
         coefficients[1] = coefs_b;
-        internalBuffer = new float[coefficients[0].Length + coefficients[1].length];   // buffer of size N
+        internalBuffer = new float[coefficients[0].Length + coefficients[1].Length];   // buffer of size N
     }
 
     public float ProcessSample(float input)
@@ -23,7 +23,7 @@ public class InverseHeadphones
         // Update the filter state
         for (int i = 1; i < coefficients[1].Length; i++)
         {
-            internalBuffer[i - 1] = coefficients[1][i] * input - coefficients[0][i] * output + buffer[i];
+            internalBuffer[i - 1] = coefficients[1][i] * input - coefficients[0][i] * output + internalBuffer[i];
         }
 
         return output;
@@ -32,6 +32,5 @@ public class InverseHeadphones
     public void Reset()
     {
         Array.Clear(internalBuffer, 0, internalBuffer.Length);
-        bufferIndex = 0;
     }
 }

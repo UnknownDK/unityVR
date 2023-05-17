@@ -242,7 +242,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  filter: {fileID: 0}
 --- !u!114 &3653084667687988869
 MonoBehaviour:
   m_ObjectHideFlags: 0

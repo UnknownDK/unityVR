@@ -36,6 +36,8 @@ public class theDirectivityFilter : MonoBehaviour
         sourceRot = new float[3] {GameObject.Find("original").transform.eulerAngles.x, GameObject.Find("original").transform.eulerAngles.z, GameObject.Find("original").transform.eulerAngles.y};
     
         filter.updateFilter(ISMPos, recPos, sourceRot, sourcePos);
+        
+        // print(name + ": " + (filter.azimuth *180/Mathf.PI).ToString() + ", " + (filter.elevation *180/Mathf.PI).ToString());
 
         ready = true;
     }
@@ -49,8 +51,6 @@ public class theDirectivityFilter : MonoBehaviour
         sourceRot = new float[3] {GameObject.Find("original").transform.eulerAngles.x, GameObject.Find("original").transform.eulerAngles.z, GameObject.Find("original").transform.eulerAngles.y};
 
         filter.updateFilter(ISMPos, recPos, sourceRot, sourcePos);
-        
-        print(name + ": " + (filter.azimuth *180/Mathf.PI).ToString() + ", " + (filter.elevation *180/Mathf.PI).ToString());
         
     }
 

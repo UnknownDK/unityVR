@@ -28,7 +28,7 @@ public class Directivity
         }
         distance = Mathf.Sqrt(distance);
 
-        azimuth = Mathf.Atan2(pointVector[1], pointVector[0]);
+        azimuth = Mathf.Atan2(pointVector[0], pointVector[1]);
         azimuth += OGSorceDir[0];
 
         elevation = Mathf.Asin(pointVector[2]/distance);
@@ -44,24 +44,65 @@ public class Directivity
             directivityScalars[0] = (0.5f*(1f - Mathf.Cos(azimuth+Mathf.PI)) +1f)/2f;
             directivityScalars[1] = (0.5f*(1f - Mathf.Cos(elevation+Mathf.PI)) +1f)/2f;
         }
-        else
+        else if (walls[1] == -1)
         {
-            if (ISMPosition[0] != OGPoint[0])
+            if(ISMPosition[0] != OGPoint[0])
             {
-                directivityScalars[0] = (0.5f*(1f - Mathf.Cos(azimuth)) +1f)/2f;
+                directivityScalars[0] = (0.5f*(1.0f-Mathf.Cos(azimuth))+1.0f)/2.0f; //
             }
             else
             {
-                directivityScalars[0] = (0.5f*(1f - Mathf.Cos(azimuth+Mathf.PI)) +1f)/2f;
+                directivityScalars[0] = (0.5f*(1.0f-Mathf.Cos(azimuth+Mathf.PI))+1.0f)/2.0f;
+            }
+
+            if(ISMPosition[1] != OGPoint[1])
+            {
+                directivityScalars[0] = (0.5f*(1.0f-Mathf.Cos(azimuth))+1.0f)/2.0f; //
+            }
+            else
+            {
+                directivityScalars[0] = (0.5f*(1.0f-Mathf.Cos(azimuth+Mathf.PI))+1.0f)/2.0f;
             }
 
             if(ISMPosition[2] != OGPoint[2])
             {
-                directivityScalars[1] = (0.5f*(1f - Mathf.Cos(elevation+Mathf.PI)) +1f)/2f;
+                directivityScalars[1] = (0.5f*(1.0f-Mathf.Cos(elevation+Mathf.PI))+1.0f)/2.0f; //
             }
             else
             {
-                directivityScalars[1] = (0.5f*(1f - Mathf.Cos(elevation)) +1f)/2f;
+                directivityScalars[1] = (0.5f*(1.0f-Mathf.Cos(elevation+Mathf.PI))+1.0f)/2.0f; //
+            }
+        }
+        else
+        {
+            if ((ISMPosition[0] == OGPoint[0] & ISMPosition[2] == OGPoint[2]) | (ISMPosition[1] == OGPoint[1] & ISMPosition[2] == OGPoint[2]))
+            {
+                if((ISMPosition[0] < 0) | (ISMPosition[1] < 0))
+                {
+                    directivityScalars[0] = (0.5f*(1.0f-Mathf.Cos(azimuth))+1.0f)/2.0f;
+                }
+                else
+                {
+                    directivityScalars[0] = (0.5f*(1.0f-Mathf.Cos(azimuth))+1.0f)/2.0f;
+                }
+                directivityScalars[1] = (0.5f*(1.0f-Mathf.Cos(elevation+Mathf.PI))+1.0f)/2.0f;
+            }
+            else if (ISMPosition[0] == OGPoint[0] & ISMPosition[1] == OGPoint[1])
+            {
+                if(ISMPosition[2] < 0)
+                {
+                    directivityScalars[1] = (0.5f*(1.0f-Mathf.Cos(elevation))+1.0f)/2.0f;
+                }
+                else
+                {
+                    directivityScalars[1] = (0.5f*(1.0f-Mathf.Cos(elevation+Mathf.PI))+1.0f)/2.0f;
+                }
+                directivityScalars[0] = (0.5f*(1.0f-Mathf.Cos(azimuth+Mathf.PI))+1.0f)/2.0f;
+            }
+            else
+            {
+                directivityScalars[0] = (0.5f*(1.0f-Mathf.Cos(azimuth))+1.0f)/2.0f;
+                directivityScalars[1] = (0.5f*(1.0f-Mathf.Cos(elevation+Mathf.PI))+1.0f)/2.0f;
             }
         }
 
