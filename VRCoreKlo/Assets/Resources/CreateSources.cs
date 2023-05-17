@@ -26,13 +26,13 @@ public class CreateSources : MonoBehaviour
         reflectiveSurfaces.Main();
         ISMPositions = reflectiveSurfaces.GetISMs();
         numSource = ISMPositions.GetLength(0);
-        //numSource = 0;
+        // numSource = 0;
         originalPos = reflectiveSurfaces.point;
        
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     
 
         // load audio clip to be played and add zeros to the beginning
-        AudioClip clip = (AudioClip)Resources.Load("SineSweep1");
+        AudioClip clip = (AudioClip)Resources.Load("SineSweep2");
         clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 

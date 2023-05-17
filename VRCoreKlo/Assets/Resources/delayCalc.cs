@@ -42,8 +42,8 @@ public class delayCalc : MonoBehaviour
         // calculate distance in meters and the time in seconds
         dist = Math.Sqrt(Math.Pow(pos1[0]-pos2[0], 2) + Math.Pow(pos1[1]-pos2[1], 2) + Math.Pow(pos1[2] - pos2[2], 2));
         time = dist/soundSpeed;
-        // calculate delay in number of samples, multiply with 2 because there are 2 samples (left and right) for each time instance 
-        delay = (int)Math.Round(time*sampleRate)*2; 
+        // calculate delay in number of samples, (multiply with 2 because there are 2 samples (left and right) for each time instance)
+        delay = (int)Math.Round(time*sampleRate); 
 
         return delay;
     }
