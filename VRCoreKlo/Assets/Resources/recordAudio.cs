@@ -5,6 +5,7 @@ using System.IO;
 
 public class recordAudio : MonoBehaviour
 {
+    [HideInInspector]
     float[] saveBuffer = new float[20000];
     int iter = 0;
     // Start is called before the first frame update
