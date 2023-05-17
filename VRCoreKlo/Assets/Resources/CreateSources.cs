@@ -32,7 +32,7 @@ public class CreateSources : MonoBehaviour
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     
 
         // load audio clip to be played and add zeros to the beginning
-        AudioClip clip = (AudioClip)Resources.Load("SineSweep2");
+        AudioClip clip = (AudioClip)Resources.Load("Impulse");
         clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 

@@ -7,7 +7,7 @@ public class recordoutput : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public float[] originalBuffer = new float[44100 * 60];
+    //public float[] originalBuffer = new float[44100 * 60];
     public float[] processedBuffer = new float[44100 * 60];
 
     public int bufferIndex = 0;
@@ -43,20 +43,22 @@ public class recordoutput : MonoBehaviour
     private IEnumerator savebuffers()
     {
 
-        string origpath = Application.persistentDataPath + "/orig.txt";
+        //string origpath = Application.persistentDataPath + "/orig.txt";
         string processedpath = Application.persistentDataPath + "/processed.txt";
+        print("path: " + processedpath);
+
         //Write some text to the test.txt file
-        StreamWriter origwriter = new StreamWriter(origpath, true);
+        //StreamWriter origwriter = new StreamWriter(origpath, true);
         StreamWriter proswriter = new StreamWriter(processedpath, true);
 
         for (int i = 0; i < bufferLength; i++)
         {
-            origwriter.WriteLine(originalBuffer[i]);
+            //origwriter.WriteLine(originalBuffer[i]);
             proswriter.WriteLine(processedBuffer[i]);
         }
 
 
-        origwriter.Close();
+        //origwriter.Close();
         proswriter.Close();
 
         yield return null;
@@ -68,13 +70,8 @@ public class recordoutput : MonoBehaviour
     {
         for(int i = 0; i < data.Length; i+=1)
         {
-            if (bufferIndex < bufferLength) {
-                originalBuffer[bufferIndex] = data[i];
-            }
-
-            data[i] = data[i] * 0.5f;
-
-            if (bufferIndex < bufferLength) {
+            if (bufferIndex < bufferLength) 
+            {
                 processedBuffer[bufferIndex] = data[i];
             }
 
