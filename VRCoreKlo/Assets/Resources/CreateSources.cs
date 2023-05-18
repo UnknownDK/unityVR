@@ -17,6 +17,8 @@ public class CreateSources : MonoBehaviour
 
     public static int zeroOffset = 10000;
 
+    public static float reverbGain = 0.25f;
+
     float delayTime = 35f;
     float nextTime = 0f;
 
@@ -26,17 +28,18 @@ public class CreateSources : MonoBehaviour
         reflectiveSurfaces.Main();
         ISMPositions = reflectiveSurfaces.GetISMs();
         numSource = ISMPositions.GetLength(0);
-        numSource = 0;
+        //numSource = 3;
         originalPos = reflectiveSurfaces.point;
        
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     
 
         // load audio clip to be played and add zeros to the beginning
-        AudioClip clip = (AudioClip)Resources.Load("Impulse");
+        AudioClip clip = (AudioClip)Resources.Load("Test Scripts/Test tones/1");
         clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 
-        GameObject OriginalAudio = (GameObject) Resources.Load("OriginalAudio");
+        //GameObject OriginalAudio = (GameObject) Resources.Load("OriginalAudio");
+        GameObject OriginalAudio = (GameObject) Resources.Load("ISMAudio"); 
         originalAudioSource = new GameObject();
         originalAudioSource = Instantiate(OriginalAudio);
         originalAudioSource.name = "original";

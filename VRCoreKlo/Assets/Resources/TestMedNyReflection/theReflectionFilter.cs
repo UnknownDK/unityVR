@@ -61,6 +61,7 @@ public class theReflectionFilter : MonoBehaviour
         filterL.Reset();
         filterR.Reset();   
         ready = true;   
+        
     }
 
     // Update is called once per frame

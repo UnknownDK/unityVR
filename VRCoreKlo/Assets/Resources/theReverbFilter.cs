@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class theReverbFilter : MonoBehaviour
 {
-    AllpassFilter filter1 = new AllpassFilter(1176, 0.7f);
-    AllpassFilter filter2 = new AllpassFilter(1001, 0.7f);
-    AllpassFilter filter3 = new AllpassFilter(529, 0.7f);
-    AllpassFilter filter4 = new AllpassFilter(358, 0.7f);
+    AllpassFilter filter1 = new AllpassFilter(515, 0.7f);
+    AllpassFilter filter2 = new AllpassFilter(491, 0.7f);
+    AllpassFilter filter3 = new AllpassFilter(261, 0.7f);
+    AllpassFilter filter4 = new AllpassFilter(174, 0.7f);
 
     // Create an output signal as an array of the same length
     public float[] outputSignal = new float[256];
@@ -49,8 +49,8 @@ public class theReverbFilter : MonoBehaviour
         }
         for(int i = 0; i < data.Length; i+=2)
         {
-            data[i] += outputSignal[i/2];
-            data[i+1] += outputSignal[i/2]; 
+            data[i] += CreateSources.reverbGain*outputSignal[i/2];
+            data[i+1] += CreateSources.reverbGain*outputSignal[i/2];
         }
     }
 }

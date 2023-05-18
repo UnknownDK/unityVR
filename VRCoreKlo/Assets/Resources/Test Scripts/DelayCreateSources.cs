@@ -56,7 +56,7 @@ public class DelayCreateSources : MonoBehaviour
             ISMAudioSource[i] = Instantiate(ISMAudio);
             ISMAudioSource[i].transform.position = new Vector3(5f*i + 5f, 0f, 0f);
 
-            clip = Resources.Load<AudioClip>("Test Scripts/Test tones/" + (i+2).ToString());
+            clip = Resources.Load<AudioClip>("Test Scripts/Test tones/" + (i+2).ToString()); 
             clip = AddZerosToClip(clip, zeroOffset);
 
             ISMAudioSource[i].GetComponent<AudioSource>().clip = clip;
@@ -84,7 +84,6 @@ public class DelayCreateSources : MonoBehaviour
             ISMAudioSource[i].transform.position = new Vector3((float)ISMPositions[i,0], (float)ISMPositions[i,2], (float)ISMPositions[i,1]);
         }
         */
-        
         // play sound if sound source is not playing
        if(nextTime < AudioSettings.dspTime && !originalAudioSource.GetComponent<AudioSource>().isPlaying)
         {
