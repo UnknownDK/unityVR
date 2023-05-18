@@ -49,8 +49,8 @@ public class theReverbFilter : MonoBehaviour
         }
         for(int i = 0; i < data.Length; i+=2)
         {
-            data[i] += 0.5f*outputSignal[i/2];
-            data[i+1] += 0.5f*outputSignal[i/2];
+            data[i] += outputSignal[i/2];
+            data[i+1] += outputSignal[i/2]; 
         }
     }
 }
