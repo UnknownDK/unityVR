@@ -17,7 +17,7 @@ public class CreateSources : MonoBehaviour
 
     public static int zeroOffset = 10000;
 
-    public static float reverbGain = 0.25f;
+    public static float reverbGain = 1.0f;
 
     float delayTime = 35f;
     float nextTime = 0f;
