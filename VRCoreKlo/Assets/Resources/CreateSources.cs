@@ -34,12 +34,11 @@ public class CreateSources : MonoBehaviour
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     
 
         // load audio clip to be played and add zeros to the beginning
-        AudioClip clip = (AudioClip)Resources.Load("Test Scripts/Test tones/1");
+        AudioClip clip = (AudioClip)Resources.Load("Impulse");
         clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 
-        //GameObject OriginalAudio = (GameObject) Resources.Load("OriginalAudio");
-        GameObject OriginalAudio = (GameObject) Resources.Load("ISMAudio"); 
+        GameObject OriginalAudio = (GameObject) Resources.Load("OriginalAudio");
         originalAudioSource = new GameObject();
         originalAudioSource = Instantiate(OriginalAudio);
         originalAudioSource.name = "original";

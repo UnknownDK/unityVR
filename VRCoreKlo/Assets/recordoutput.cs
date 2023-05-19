@@ -45,6 +45,7 @@ public class recordoutput : MonoBehaviour
 
         //string origpath = Application.persistentDataPath + "/orig.txt";
         string processedpath = Application.persistentDataPath + "/processed.txt";
+        //string processedpath = "C:/Users/alber/Desktop/processed.txt";
         print("path: " + processedpath);
 
         //Write some text to the test.txt file
