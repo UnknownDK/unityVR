@@ -8,6 +8,8 @@ public class InvSquare : MonoBehaviour
     public float dist = 0.0f;
     private float[] camPos = new float[3] {0, 0, 0};
     private float[] sourcePos = new float[3] {0, 0, 0};
+    bool ready = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,9 @@ public class InvSquare : MonoBehaviour
         sourcePos[2] = transform.position.z; 
 
         // calculate distance in meters
-        dist = (float)MathF.Sqrt(MathF.Pow(camPos[0]-sourcePos[0], 2) + MathF.Pow(camPos[1]-sourcePos[1], 2) + MathF.Pow(camPos[2] - sourcePos[2], 2));
+        dist = (float)Math.Sqrt((camPos[0]-sourcePos[0])*(camPos[0]-sourcePos[0]) + (camPos[1]-sourcePos[1]) *(camPos[1]-sourcePos[1]) + (camPos[2] - sourcePos[2])*(camPos[2] - sourcePos[2]));
+
+        ready = true;
     }
 
     // Update is called once per frame
@@ -39,18 +43,20 @@ public class InvSquare : MonoBehaviour
         sourcePos[2] = transform.position.z; 
 
         // calculate distance in meters
-        dist = (float)MathF.Sqrt(MathF.Pow(camPos[0]-sourcePos[0], 2) + MathF.Pow(camPos[1]-sourcePos[1], 2) + MathF.Pow(camPos[2] - sourcePos[2], 2));
+        // dist = (float)Math.Sqrt(Math.Pow(camPos[0]-sourcePos[0], 2) + Math.Pow(camPos[1]-sourcePos[1], 2) + Math.Pow(camPos[2] - sourcePos[2], 2));
+        dist = (float)Math.Sqrt((camPos[0]-sourcePos[0])*(camPos[0]-sourcePos[0]) + (camPos[1]-sourcePos[1]) *(camPos[1]-sourcePos[1]) + (camPos[2] - sourcePos[2])*(camPos[2] - sourcePos[2]));
         //print(dist.ToString() + " " + camPos[0].ToString() + " " + camPos[1].ToString() + " " + camPos[2].ToString() + " " + sourcePos[0].ToString() + " " + sourcePos[1].ToString() + " " + sourcePos[2].ToString());
     }
 
     void OnAudioFilterRead(float[] data, int channels)
     {
+        if(!ready)
+        {
+            return;
+        }
         for (int i = 0; i < data.Length; i++)
         {
-            if (dist != 0)
-            {
-                data[i] = data[i] / (dist * dist);
-            }
+            data[i] = data[i] / (dist * dist);
         }
     }
 }

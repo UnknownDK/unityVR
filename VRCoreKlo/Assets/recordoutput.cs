@@ -8,10 +8,10 @@ public class recordoutput : MonoBehaviour
     // Start is called before the first frame update
 
     //public float[] originalBuffer = new float[44100 * 60];
-    public float[] processedBuffer = new float[44100 * 20];
+    public float[] processedBuffer = new float[44100 * 60];
 
     public int bufferIndex = 0;
-    public int bufferLength = 44100 * 20; // a
+    public int bufferLength = 44100 * 60; // a
     public bool printingBool = false;
 
     void Start()
