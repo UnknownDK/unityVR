@@ -17,7 +17,8 @@ public class CreateSources : MonoBehaviour
 
     public static int zeroOffset = 10000;
 
-    public static float reverbGain = 1.0f;
+    public static float reverbGain  = 1f;
+    public static float ISMGain     = 1f;
 
     float delayTime = 35f;
     float nextTime = 0f;
@@ -28,13 +29,12 @@ public class CreateSources : MonoBehaviour
         reflectiveSurfaces.Main();
         ISMPositions = reflectiveSurfaces.GetISMs();
         numSource = ISMPositions.GetLength(0);
-        //numSource = 3;
         originalPos = reflectiveSurfaces.point;
-       
+
         wallsReflectedOn = reflectiveSurfaces.GetISMWallReflects();     
 
         // load audio clip to be played and add zeros to the beginning
-        AudioClip clip = (AudioClip)Resources.Load("Impulse_long");
+        AudioClip clip = (AudioClip)Resources.Load("adult_female_speech_mono");
         clip = AddZerosToClip(clip, zeroOffset);
         
         // instantiate original source 
@@ -66,9 +66,9 @@ public class CreateSources : MonoBehaviour
     {
         // update position of sources each frame, moves in circles as is
         /*
-        reflectiveSurfaces.point[0] = 1f+2*Math.Cos(AudioSettings.dspTime);
+        reflectiveSurfaces.point[0] = 1f+Math.Cos(AudioSettings.dspTime);
         reflectiveSurfaces.point[2] = 1f;
-        reflectiveSurfaces.point[1] = 2f+2*Math.Sin(AudioSettings.dspTime);
+        reflectiveSurfaces.point[1] = 2f+Math.Sin(AudioSettings.dspTime);
 
         reflectiveSurfaces.Main();
         ISMPositions = reflectiveSurfaces.GetISMs();

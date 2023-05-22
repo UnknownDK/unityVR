@@ -4,10 +4,30 @@ using UnityEngine;
 
 public class theReverbFilter : MonoBehaviour
 {
+
+    
+    // original
     AllpassFilter filter1 = new AllpassFilter(1176, 0.7f);
     AllpassFilter filter2 = new AllpassFilter(1001, 0.7f);
     AllpassFilter filter3 = new AllpassFilter(529, 0.7f);
     AllpassFilter filter4 = new AllpassFilter(358, 0.7f);
+    
+
+    /*
+    // half
+    AllpassFilter filter1 = new AllpassFilter(588, 0.7f);
+    AllpassFilter filter2 = new AllpassFilter(501, 0.7f);
+    AllpassFilter filter3 = new AllpassFilter(265, 0.7f);
+    AllpassFilter filter4 = new AllpassFilter(179, 0.7f);
+    */
+
+    /*
+    // quarter
+    AllpassFilter filter1 = new AllpassFilter(294, 0.7f);
+    AllpassFilter filter2 = new AllpassFilter(251, 0.7f);
+    AllpassFilter filter3 = new AllpassFilter(133, 0.7f);
+    AllpassFilter filter4 = new AllpassFilter(90, 0.7f);
+    */
 
     // Create an output signal as an array of the same length
     public float[] outputSignal = new float[256];

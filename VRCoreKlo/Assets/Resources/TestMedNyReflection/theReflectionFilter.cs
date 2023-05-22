@@ -76,8 +76,8 @@ public class theReflectionFilter : MonoBehaviour
             return;
         for(int i = 0; i < data.Length; i+=2)
         {
-            data[i]     = filterL.ProcessSample(data[i]);
-            data[i+1]   = filterR.ProcessSample(data[i+1]);
+            data[i]     = CreateSources.ISMGain*filterL.ProcessSample(data[i]);
+            data[i+1]   = CreateSources.ISMGain*filterR.ProcessSample(data[i+1]);
         }
     }
 }
